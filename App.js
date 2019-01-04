@@ -12,8 +12,15 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import Header from './src/components/Header'
 import axios from 'axios'
 import PeopleList from './src/components/PeopleList';
+//import { CreateStackNavigator} from 'react-navigation'
 
 export default class App extends Component{
+
+  /*
+  static navigationOptions = {
+    title: 'Início'
+  }
+  */
 
   constructor(props){
     super(props);
