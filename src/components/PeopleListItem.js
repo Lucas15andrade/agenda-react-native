@@ -12,7 +12,10 @@ const PeopleListItem = (props) => {
     return(
         <TouchableOpacity onPress={() => 
             //console.log('Clicou! Nome: ' + first)
-            navigateToDetail()
+            /* 
+                people: people -> {people}
+            */
+            navigateToDetail({people})
             }>
             <View style={styles.line}>
                 <Image style={styles.avatar} source={{uri: people.picture.thumbnail}}/>

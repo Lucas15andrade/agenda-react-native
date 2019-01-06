@@ -26,18 +26,18 @@
      )
    }
 
-   
+   /*
    navigate(){
-     this.props.navigation.navigate('Detail')
+     this.props.navigation.navigate('Detail',)
    }
-   
+   */
  
    render() {
      return (
        <View>
          <PeopleList 
           peoples={this.state.peoples}
-          onPressItem={() => this.navigate()}/>
+          onPressItem={(pageParams) => this.props.navigation.navigate('Detail', pageParams)}/>
        </View>
      );
    }
