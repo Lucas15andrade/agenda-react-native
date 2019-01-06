@@ -6,12 +6,13 @@ import PeopleListItem from './PeopleListItem'
 const PeopleList = (props) => {
 
     // {peoples} é a 'tag' passada na chamada do componente em App.js
-    const { peoples } = props;
+    const { peoples, onPressItem } = props;
 
     const items = peoples.map((people) => {
         return <PeopleListItem 
             key={people.name.first} 
-            people={people}/>
+            people={people}
+            navigateToDetail={onPressItem}/>
     });
 
     return(
