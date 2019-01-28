@@ -6,26 +6,8 @@ const AppNavigator = createStackNavigator({
   Home: {
     //Possui a "injeção" do método navigate do react-navigation
     screen: PeoplePage,
-    /*
-    navigationOptions: ({ navigation }) =>({
-
-      title: 'Início',
-      headerTintColor: '#fff',
-      headerStyle: {
-        backgroundColor: '#6ca2f7'
-      },
-      headerTitleStyle: {
-        color: '#fff',
-        fontSize: 25
-      }
-      
-    })
-    */
-
+    
     navigationOptions: ({ navigation }) => {
-
-      //const teste = navigation.state.params.people.name.first;
-      //const firstName = 'Página inicial!'
 
       return({
         title: 'Pessoas',
@@ -39,24 +21,18 @@ const AppNavigator = createStackNavigator({
         }
       });
     }
+    
   },
 
   Detail: {
     screen: PeopleDetailPage,
 
     /*
-    navigationOptions: () => ({
-      title: 'Detalhes',
-      headerTintColor: '#fff',
-      headerStyle: {
-        backgroundColor: '#6ca2f7'
-      },
-      headerTitleStyle: {
-        color: '#fff',
-        fontSize: 25
-      }
-    })
-    */
+    
+    // É possível alterar o navigationOptions por aqui ou
+    // sobrescrevendo esse método estático na classe do componente
+    // que se deseja alterar as configurações.
+    // Ambas as formas funcionam aparentemente iguais.
 
     navigationOptions: ({ navigation }) => {
 
@@ -74,26 +50,10 @@ const AppNavigator = createStackNavigator({
         }
       })
     }
-
+    */
   }
 });
 
-/*
-const styles = StyleSheet.create({
-
-  stackNavigator: {
-    title: 'Início',
-    headerStyle: {
-      backgroundColor: '#6ca2f7'
-    },
-    headerTitleStyle: {
-      color: '#fff',
-      fontSize: 25
-    }
-  }
-
-})
-*/
 
 //export default PeoplePage
 

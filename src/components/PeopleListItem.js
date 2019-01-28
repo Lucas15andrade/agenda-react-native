@@ -11,7 +11,6 @@ const PeopleListItem = (props) => {
 
     return(
         <TouchableOpacity onPress={() => 
-            //console.log('Clicou! Nome: ' + first)
             /* 
                 people: people -> {people}
             */
