@@ -15,7 +15,7 @@
      }
    }
    componentDidMount() {
-     axios.get('https://randomuser.me/api/?nat=br&results=5').then(
+     axios.get('https://randomuser.me/api/?nat=br&results=15').then(
        response => {
          const { results } = response.data;
          //console.log(results);

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, StyleSheet} from 'react-native'
+import { Text, View, StyleSheet, ScrollView, FlatList} from 'react-native'
 import PeopleListItem from './PeopleListItem'
 
 //Componente stateless - Sem estado
@@ -8,17 +8,28 @@ const PeopleList = (props) => {
     // {peoples} é a 'tag' passada na chamada do componente em App.js
     const { peoples, onPressItem } = props;
 
+    /*
     const items = peoples.map((people) => {
         return <PeopleListItem 
             key={people.name.first} 
             people={people}
             navigateToDetail={onPressItem}/>
     });
+    */
 
     return(
-        <View style={styles.containter}>
-            {items}
-        </View>
+        <FlatList
+            style={styles.containter} 
+            data={peoples} 
+            renderItem={ ({ item }) =>  (
+                    <PeopleListItem 
+                        people={item}
+                        navigateToDetail={onPressItem}
+                    /> 
+            )} 
+            keyExtractor={(item) => item.name.first}
+                    
+        />
     )
 }
 
