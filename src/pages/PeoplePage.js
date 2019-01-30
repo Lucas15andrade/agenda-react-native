@@ -12,7 +12,8 @@
  
      this.state = {
        peoples: [],
-       loading: false
+       loading: false,
+       error: false
      }
    }
    componentDidMount() {
@@ -29,7 +30,12 @@
             loading: false
           })
         }
-      )
+      ).catch((error) => {
+        this.setState({
+          error: true,
+          loading: false
+        });
+      });
     }, 1500);
     
    }
@@ -43,26 +49,46 @@
    /* Utilizando um método para verifica o valor de loading do state
       Ou verficar atráves de um operador ternário */
 
-   renderLoading(){
-     if(this.state.loading)
-       return <ActivityIndicator size="large" color="6ca2f7"/>;
-      return null;
+   renderPage(){
+      if(this.state.loading)
+        return <ActivityIndicator size="large" color="6ca2f7"/>;
+      
+      if(this.state.error)
+        return <Text style={styles.error}>Ops... Algo deu errado! :(</Text>
+
+      return (<PeopleList peoples={this.state.peoples}
+                          onPressItem={(pageParams) => this.props.navigation.navigate('Detail', pageParams)}
+                      />
+                );
    }
  
    render() {
      return (
-       <View>
-         { /* this.renderLoading() */}
-         { this.state.loading ? <ActivityIndicator size="large" color="6ca2f7"/> : null}
-         <PeopleList 
-          peoples={this.state.peoples}
-          onPressItem={(pageParams) => this.props.navigation.navigate('Detail', pageParams)}/>
+       <View style={styles.container}>
+         { this.renderPage() }
+         { /*
+           this.state.loading 
+              ? <ActivityIndicator size="large" color="6ca2f7"/>
+              : this.state.error
+                  ? <Text style={styles.error}>Ops... Algo deu errado! :(</Text>
+                    : <PeopleList 
+                        peoples={this.state.peoples}
+                        onPressItem={(pageParams) => this.props.navigation.navigate('Detail', pageParams)}
+                      />
+                  */}
        </View>
      );
    }
  }
  
  const styles = StyleSheet.create({
-  
+    container: {
+      flex: 1,
+      justifyContent: 'center'
+    },
+    error: {
+      color: 'red',
+      alignSelf: 'center'
+    }
  });
  

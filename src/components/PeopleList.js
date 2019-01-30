@@ -35,7 +35,7 @@ const PeopleList = (props) => {
 
 const styles = StyleSheet.create({
     containter:{
-        backgroundColor: '#e2f9ff'
+        //backgroundColor: '#e2f9ff'
     }
 });
 
