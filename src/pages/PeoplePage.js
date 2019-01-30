@@ -1,6 +1,6 @@
  //Fazendo destructing js na importação dos components do React
  import React, {Component} from 'react';
- import {Platform, StyleSheet, Text, View} from 'react-native';
+ import {Platform, StyleSheet, Text, View, ActivityIndicator} from 'react-native';
  //import Header from '../components/Header'
  import axios from 'axios'
  import PeopleList from '../components/PeopleList';
@@ -11,19 +11,27 @@
      super(props);
  
      this.state = {
-       peoples: []
+       peoples: [],
+       loading: false
      }
    }
    componentDidMount() {
-     axios.get('https://randomuser.me/api/?nat=br&results=15').then(
-       response => {
-         const { results } = response.data;
-         //console.log(results);
-         this.setState({
-           peoples: results
-         })
-       }
-     )
+    this.setState({
+      loading: true
+    })
+    setTimeout(() => {
+      axios.get('https://randomuser.me/api/?nat=br&results=150').then(
+        response => {
+          const { results } = response.data;
+          //console.log(results);
+          this.setState({
+            peoples: results,
+            loading: false
+          })
+        }
+      )
+    }, 1500);
+    
    }
 
    /*
@@ -31,10 +39,21 @@
      this.props.navigation.navigate('Detail',)
    }
    */
+
+   /* Utilizando um método para verifica o valor de loading do state
+      Ou verficar atráves de um operador ternário */
+
+   renderLoading(){
+     if(this.state.loading)
+       return <ActivityIndicator size="large" color="6ca2f7"/>;
+      return null;
+   }
  
    render() {
      return (
        <View>
+         { /* this.renderLoading() */}
+         { this.state.loading ? <ActivityIndicator size="large" color="6ca2f7"/> : null}
          <PeopleList 
           peoples={this.state.peoples}
           onPressItem={(pageParams) => this.props.navigation.navigate('Detail', pageParams)}/>
